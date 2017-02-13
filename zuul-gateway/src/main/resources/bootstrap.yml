@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: gateway
+
+zuul:
+  routes:
+    users:
+      path: /users/**
+      url: http://localhost:9006/users
+      service-id: user-service
+    cars:
+      path: /cars/**
+      url: http://localhost:9007/cars
+      service-id: car-service
+    car-orders:
+      path: /orders/**
+      url: http://localhost:9008/orders
+      service-id: rental-service
+  strip-prefix: false
+      
+ribbon:
+  eureka:
+    enabled: false  
