@@ -1,6 +1,6 @@
-spring:
+spring:  
   application:
-    name: gateway
+    name: user-service
 #  cloud:
 #    config:
 #      uri: http://localhost:8888

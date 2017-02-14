@@ -1,6 +1,6 @@
-spring:
+spring:  
   application:
-    name: discovery
+    name: rental-service
   cloud:
     config:
       uri: http://localhost:8888

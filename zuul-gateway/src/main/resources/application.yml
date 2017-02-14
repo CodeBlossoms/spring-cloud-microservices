@@ -1,3 +1,23 @@
+zuul:
+  routes:
+    users:
+      path: /users/**
+#      url: http://localhost:9006/users
+      serviceId: user-service
+    cars:
+      path: /cars/**
+#      url: http://localhost:9007/cars
+      service-id: car-service
+    car-orders:
+      path: /orders/**
+#      url: http://localhost:9008/orders
+      service-id: rental-service
+  strip-prefix: false
+      
+ribbon:
+  eureka:
+    enabled: false  
+    
 server:
   port: 9010
   
@@ -12,8 +32,11 @@ endpoints:
     
 eureka:
   instance:
-    hostname: localhost
+    hostname: gateway
+    prefer-ip-address: true
   client:
     register-with-eureka: true
     fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
   
