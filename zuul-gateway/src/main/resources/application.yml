@@ -1,22 +1,26 @@
 zuul:
   routes:
-    users:
-      path: /users/**
-#      url: http://localhost:9006/users
-      serviceId: user-service
-    cars:
-      path: /cars/**
-#      url: http://localhost:9007/cars
-      service-id: car-service
+    user-service: /users/**
+    car-service: /cars/**      
     car-orders:
       path: /orders/**
-#      url: http://localhost:9008/orders
-      service-id: rental-service
-  strip-prefix: false
+      serviceId:  rental-service
       
-ribbon:
-  eureka:
-    enabled: false  
+
+user-service:
+  ribbon:
+    eureka:
+      enabled: false  
+
+car-service:
+  ribbon:
+    eureka:
+      enabled: false
+      
+rental-service:
+  ribbon:
+    eureka:
+      enabled: false
     
 server:
   port: 9010

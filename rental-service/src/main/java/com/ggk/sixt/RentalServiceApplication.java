@@ -10,8 +10,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-/*@EnableFeignClients(basePackages = "com.ggk.sixt.feignClients")
-@ComponentScan(basePackages = "com.ggk.sixt.feignClients")*/
+//@ComponentScan(basePackages = "com.ggk.sixt.configs")
+@EnableFeignClients(basePackages = "com.ggk.sixt.feignClients")
 @EnableDiscoveryClient
 public class RentalServiceApplication {
 

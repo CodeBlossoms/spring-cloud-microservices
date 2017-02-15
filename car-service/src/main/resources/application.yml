@@ -19,13 +19,10 @@ spring:
         enable_lazy_load_no_trans: true
 
 server:
-  port: 9006
+  port: 9007
   
 eureka:
-  instance:
-    leaseRenewalIntervalInSeconds: 5
-    leaseExpirationDurationInSeconds: 10
   client:
+    fetch-registry: true
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
-   
