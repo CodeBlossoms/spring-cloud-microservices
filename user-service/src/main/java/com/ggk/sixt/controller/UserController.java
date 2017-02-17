@@ -6,14 +6,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ggk.sixt.domainService.UserService;
 import com.ggk.sixt.repository.UserRepo;
 import com.ggk.sixt.vo.User;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 
 @RestController
 public class UserController implements UserService {
@@ -21,6 +21,9 @@ public class UserController implements UserService {
 	@Autowired
 	UserRepo userRepo;
 	
+	/*@HystrixCommand(commandProperties = {
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "500")
+        })*/
 	public User getUser(@PathVariable int userId){
 		return userRepo.findOne(userId);
 	}

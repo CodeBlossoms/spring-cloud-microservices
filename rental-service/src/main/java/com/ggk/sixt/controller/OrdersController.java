@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,11 +29,11 @@ public class OrdersController {
 	@Autowired
 	OrdersRepo carOrdersRepo;
 	
-	@Autowired/*(required=true)*/
+	@Autowired
 	RestTemplate restTemplate;
 	
-	/*@Autowired
-	UserServiceFeignClient userServiceFeignClient;*/
+	@Autowired
+	UserServiceFeignClient userServiceFeignClient;
 	
 	@RequestMapping("/{orderId}")
 	public CarOrder getOrder(@PathVariable int orderId){
@@ -60,11 +61,14 @@ public class OrdersController {
 	@RequestMapping(value = "{userId}/rent-a-car/{carId}" ,method = RequestMethod.POST)
 	public void rentACar(@PathVariable int userId, @PathVariable int carId){
 		//validate user is customer
-		User user = restTemplate.getForObject(_userServiceUrl+"/users/"+userId, User.class);
+		//User user = restTemplate.getForObject(_userServiceUrl+"/users/"+userId, User.class);
 		
-		//User user = userServiceFeignClient.getUser(userId);
+		User user = userServiceFeignClient.getUser(userId);
+		
 		if(user==null)
 			throw new RuntimeException("Sorry we dont know you, we cannot rent you a car ");
+		
+		System.out.println(user.getName());
 		
 		if(!user.getRole().equals("customer"))
 			throw new RuntimeException("Sorry we can rent our cars only to customers");
