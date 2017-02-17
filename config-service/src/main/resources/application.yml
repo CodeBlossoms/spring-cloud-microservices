@@ -1,0 +1,22 @@
+server:
+  port: 8888
+
+eureka:
+  instance:
+    hostname: configserver
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+
+spring:
+  cloud:
+    config:
+      label: dev
+      server:
+        git:
+          uri: https://github.com/CodeBlossoms/cloud-config-repo
+          default-label: dev
+      discovery:
+        enabled: true
+
