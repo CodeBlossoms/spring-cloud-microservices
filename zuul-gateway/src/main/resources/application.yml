@@ -1,9 +1,9 @@
 zuul:
   routes:
     user-service: /users/**
-    car-service: /cars/**      
+    car-service: /**      
     car-orders:
-      path: /orders/**
+      path: /**
       serviceId:  rental-service
       
 
@@ -44,3 +44,10 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka/
   
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000

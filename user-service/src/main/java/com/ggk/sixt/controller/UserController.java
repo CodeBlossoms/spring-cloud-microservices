@@ -21,9 +21,9 @@ public class UserController implements UserService {
 	@Autowired
 	UserRepo userRepo;
 	
-	@HystrixCommand(commandProperties = {
+	/*@HystrixCommand(commandProperties = {
             @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "500")
-        })
+        })*/
 	public User getUser(@PathVariable int userId){
 		return userRepo.findOne(userId);
 	}

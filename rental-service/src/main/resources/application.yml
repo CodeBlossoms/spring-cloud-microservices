@@ -38,8 +38,11 @@ endpoints:
   health:
     sensitive: false
     
-user-service:
-  ribbon:
-    eureka:
-      enabled: false
-    ServerListRefreshInterval: 5000
+    
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000

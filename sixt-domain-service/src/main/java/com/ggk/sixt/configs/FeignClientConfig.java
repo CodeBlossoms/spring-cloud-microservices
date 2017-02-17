@@ -10,16 +10,7 @@ import com.netflix.loadbalancer.IRule;
 import com.netflix.loadbalancer.PingUrl;
 import com.netflix.loadbalancer.RoundRobinRule;
 
-//@Configuration
-public class RibbonClientConfig {
-	
-	  @Bean
-	  public IPing ribbonPing(IClientConfig config) {
-	    return new PingUrl();
-	  }
-
-	  @Bean
-	  public IRule ribbonRule(IClientConfig config) {
-	    return new RoundRobinRule();
-	  }
+@Configuration
+public class FeignClientConfig {
+	  
 }
