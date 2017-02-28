@@ -20,7 +20,7 @@ import com.ggk.sixt.vo.User;
 
 
 @RestController
-@RequestMapping("/orders")
+//@RequestMapping("/orders")
 public class OrdersController {
 	
 	private final String _carServiceUrl = "http://car-service";
@@ -40,7 +40,7 @@ public class OrdersController {
 		return carOrdersRepo.findOne(orderId);
 	}
 	
-	@RequestMapping()
+	@RequestMapping
 	public List<CarOrder> getOrdersByUser(@RequestParam int userId){
 		System.out.println(userId);
 		List<CarOrder> orders = new ArrayList<>();

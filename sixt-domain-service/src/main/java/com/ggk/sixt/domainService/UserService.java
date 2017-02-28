@@ -13,18 +13,18 @@ import com.ggk.sixt.vo.User;
 
 public interface UserService {
 
-	@RequestMapping(value = "/users/{userId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/{userId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public User getUser(@PathVariable("userId") int userId);
 	
-	@RequestMapping("/users")
+	@RequestMapping
 	public List<User> getUsers();
 	
-	@RequestMapping(value = "/users",method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST)
 	public void insertUser(@RequestBody User user);
 	
-	@RequestMapping(value = "/users", method = RequestMethod.PUT)
+	@RequestMapping(method = RequestMethod.PUT)
 	public void updateUser(@RequestBody User user);
 	
-	@RequestMapping(value = "users/{userId}",method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{userId}",method = RequestMethod.DELETE)
 	public void deleteUser(@PathVariable("userId") int userId);
 }

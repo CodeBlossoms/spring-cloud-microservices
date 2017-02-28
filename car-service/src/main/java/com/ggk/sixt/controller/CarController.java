@@ -15,7 +15,7 @@ import com.ggk.sixt.vo.Car;
 
 
 @RestController
-@RequestMapping("/cars")
+//@RequestMapping("/cars")
 public class CarController {
 
 	@Autowired
