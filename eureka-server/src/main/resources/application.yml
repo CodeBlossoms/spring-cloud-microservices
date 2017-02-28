@@ -3,6 +3,8 @@ server:
 
 eureka:
   instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
     hostname: discovery
     prefer-ip-address: true
   client:
@@ -11,4 +13,4 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
 
-spring.cloud.config.discovery.enabled: true
+#spring.cloud.config.discovery.enabled: true
