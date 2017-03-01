@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 /target/
-=======
-target/
 !.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
@@ -25,4 +22,4 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
->>>>>>> refs/heads/master
+
