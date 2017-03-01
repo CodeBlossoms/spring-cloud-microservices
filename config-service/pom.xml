@@ -84,7 +84,7 @@
                 <configuration>
                     <imageName>${project.artifactId}</imageName>
                     <baseImage>java:8</baseImage>
-                    <entryPoint>["java", "-jar", "/${project.build.finalName}.jar" ,"--logging.file=./tmp/out.log"]</entryPoint>
+                    <entryPoint>["java", "-jar", "/${project.build.finalName}.jar","--logging.file=/appLogs/${project.artifactId}.log"]</entryPoint>
                     <resources>
                         <resource>
                             <targetPath>/</targetPath>
