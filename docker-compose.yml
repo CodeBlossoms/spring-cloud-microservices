@@ -10,18 +10,14 @@ services:
       interval: 1m
       timeout: 40s
       retries: 3
-  cars: 
-    image: car-service
-    depends_on: 
-      discovery:
-        condition: service_healthy
-      configserver:
-        condition: service_healthy
+    volumes:
+      - /e/CloudLogs:/appLogs
   configserver: 
-    environment: 
-      - "spring.cloud.config.label=dev"
-      - "spring.profiles.active=development"
+    #environment: 
+      #- "spring.cloud.config.label=dev"
+      #- "spring.profiles.active=development"
     image: config-server
+    container_name: configserver
     depends_on: 
       discovery:
         condition: service_healthy
@@ -32,27 +28,64 @@ services:
       interval: 1m
       timeout: 40s
       retries: 3
+    volumes:
+      - /e/CloudLogs:/appLogs
+    links:
+      - discovery
   gateway: 
     image: zuul-gateway
+    container_name: gateway
     depends_on: 
       discovery:
         condition: service_healthy
       configserver:
         condition: service_healthy
     ports: 
-      - "9010:9010" 
-  rentals: 
-    image: rental-service
-    depends_on: 
-      discovery:
-        condition: service_healthy
-      configserver:
-        condition: service_healthy
+      - "9010:9010"
+    volumes:
+      - /e/CloudLogs:/appLogs
+    links:
+      - discovery
+      - configserver
+      - cars
+      - rentals
+      - users
   users: 
     image: user-service
+    container_name: users
     depends_on: 
       discovery:
         condition: service_healthy
       configserver:
         condition: service_healthy
-    
+    volumes:
+      - /e/CloudLogs:/appLogs
+    links:
+      - discovery
+      - configserver
+  cars: 
+    image: car-service
+    container_name: cars
+    depends_on: 
+      discovery:
+        condition: service_healthy
+      configserver:
+        condition: service_healthy
+    volumes:
+      - /e/CloudLogs:/appLogs
+    links:
+      - discovery
+      - configserver
+  rentals: 
+    image: rental-service
+    container_name: rentals
+    depends_on: 
+      discovery:
+        condition: service_healthy
+      configserver:
+        condition: service_healthy
+    volumes:
+      - /e/CloudLogs:/appLogs
+    links:
+      - discovery
+      - configserver
